@@ -233,7 +233,7 @@ endif
 ifeq ($(DEFAULT_SYSTEM_DEV_CERTIFICATE),build/target/product/security/testkey)
 BUILD_KEYS := release-keys
 else
-BUILD_KEYS := dev-keys
+BUILD_KEYS := release-keys
 endif
 BUILD_VERSION_TAGS += $(BUILD_KEYS)
 BUILD_VERSION_TAGS := $(subst $(space),$(comma),$(sort $(BUILD_VERSION_TAGS)))
@@ -290,13 +290,13 @@ ifeq ($(TARGET_BUILD_VARIANT),user)
 
   # Dev. branches should have DISPLAY_BUILD_NUMBER set
   ifeq (true,$(DISPLAY_BUILD_NUMBER))
-    BUILD_DISPLAY_ID := $(BUILD_ID).$(BUILD_NUMBER_FROM_FILE) $(BUILD_KEYS)
+    BUILD_DISPLAY_ID := $(BUILD_ID)
   else
-    BUILD_DISPLAY_ID := $(BUILD_ID) $(BUILD_KEYS)
+    BUILD_DISPLAY_ID := $(BUILD_ID)
   endif
 else
   # Non-user builds should show detailed build information
-  BUILD_DISPLAY_ID := $(build_desc)
+  BUILD_DISPLAY_ID := $(BUILD_ID)
 endif
 
 # Accepts a whitespace separated list of product locales such as
